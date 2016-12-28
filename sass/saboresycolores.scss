@@ -1,0 +1,347 @@
+/*
+		@package sabores&colores_theme
+*/
+
+/* 
+	IMPORT
+	------------------------------------------------
+*/
+@import 'base/variables'; 	
+@import 'base/mixins';		
+@import 'base/fonticons';
+
+
+/*	--------------------------------------------------------------
+	TABLE OF CONTENTS:
+	--------------------------------------------------------------
+	# Generic
+	# Header
+	# Nav Bar
+	--------------------------------------------------------------
+*/
+
+
+/* 
+	# Generic
+	--------------------------------------------------------------
+*/
+header, footer, section, aside, time, article {
+	display: block;
+}
+
+body{
+	font-family: 'Raleway', 'Helvetica Neue', 'Helvetica', Arial, Verdana, sans-serif;
+	/*font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', Arial, Verdana, sans-serif;*/
+}
+
+a{
+	@include animate( color, 320ms );
+	text-decoration: none;
+	&:hover,
+	&:focus {
+		color: $mustard;
+		text-decoration: none;
+	}
+}
+
+.blackground-image{
+	position: absolute;
+	z-index: -1;
+	background-size: cover;
+	background-repeat: no-repeat;
+	header{
+		padding: 2rem 0;
+	}
+}
+
+.table{
+	display: table;
+	width: 100%;
+	height: 100%;
+	
+	.table-cell{
+	display: table-cell;
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+	text-align: center;
+	}
+}
+
+.site-content,
+.site-footer,
+.header-main {
+	width:100%;
+	margin:auto;
+	padding:0 10px;
+}
+
+.button{
+	border: none;
+	outline: none;
+	border-radius: 2rem;
+	padding: .6rem 3.5rem;
+	font-weight: 700;
+	color: white;
+	text-decoration: none;
+	text-align: center;
+}
+
+.button_highlight{
+	background: $red;
+}
+
+.cf:after,
+.cf:before {
+	content: " ";
+	display: table;
+}
+
+.cf:after {
+	clear: both;
+}
+
+
+/* 
+	BANNER SLIDE
+	----------------------------------------------
+*/
+.header-container{
+	position: relative;
+	display: block;
+	height: 590px;
+	z-index: -1;
+	text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+}
+
+.nav-topheader{
+	position: absolute;
+	z-index: 2;
+}
+
+
+.site-title{
+	color:#fff;
+	margin:0;
+	font-size:2.12em/1.22;
+	letter-spacing: -0.034em;
+}
+
+.site-description{
+	color: #fff;
+}
+
+nav-container{
+	position: absolute;
+	z-index: 2;
+	a{
+		color: #ffffff;
+		font-weight: 700;
+		text-decoration: none;
+		margin-left: 2rem;
+	}
+}
+
+.page-header {
+	border-bottom: 1px solid #bfbfbf;
+	padding-bottom: 37px;
+	padding-top: 40px;
+}
+.top-logo {
+	color: inherit;
+	float: left;
+	text-decoration: none;
+}
+.top-logo .title {
+	color: #45ac9d;
+	font: bold 1.88em/1.3125 'Montserrat', 'OpenSans', Arial, sans-serif;
+	letter-spacing: -0.034em;
+	display: block;
+	text-transform: uppercase;
+}
+.top-logo .sub-title {
+	display: block;
+}
+.top-nav {
+	float: right;
+	padding-top: 22px;
+}
+.top-nav-link {
+	color: inherit;
+	display: inline-block;
+	font-size: 14px;
+	line-height: normal;
+	margin-left: 35px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+.top-nav-link:hover {
+	border-bottom: 1px solid;
+}
+
+.navbar-fixed-top{
+  transition: all 0.4s ease-in-out;
+  padding: 15px;
+}
+@media (max-width: 768px) {
+  .navbar-fixed-top{
+    background-color: #E6E6E6;
+    transition: all 0.4s ease-in-out;
+    padding: 0px !important;
+  }
+ }
+
+ /*
+ 	NAV BAR
+ 	---------------------------------------
+ */
+ .navbar-saboresycolores{
+ 	text-align: right;
+ 	background: rgba(255,255,255,0.3);
+ 	ul { float: none; }
+	li { float: none; display: inline-block;
+		&.active {
+			a { opacity: 1;
+				&:after { @include transform( translateY(0) ); opacity: 1; }
+			}
+		}
+		&.open {
+			a { opacity: 1; background-color: rgba(0,0,0,0.1)!important;
+				&:after { @include transform( translateY(10px) ); opacity: 0!important; }
+				&:hover,
+				&:focus,
+				&:visited { background-color: rgba(0,0,0,0.1)!important;
+					&:after { @include transform( translateY(10px) ); opacity: 0!important; }
+				}
+			}
+		}
+ 		a{
+ 			color: $brown;
+ 			font-size: 14px;
+ 			opacity: 0.7;
+ 			letter-spacing: 0.05em;
+ 			background: none;
+ 			@include animate( opacity, 320ms );
+ 			&:hover,
+			&:focus,
+			&:visited { background: none; opacity: 1; 
+				&:after { @include transform( translateY(0) ); opacity: 1; }
+			}
+			&:after { content: ''; position: absolute; display: block; left: 15px; right: 15px; bottom: 14px; height: 2px; background: #fff; @include animate( all, 320ms ); opacity: 0; @include transform( translateY(10px) ); }
+ 		}
+ 		ul.dropdown-menu { border: 0; border-radius: 0; background: rgba(229,28,36,0.75); 
+			li { display: block; 
+				a {
+					&:hover,
+					&:focus,
+					&:visited { background: rgba(242,150,0,0.25)!important; color: #fff; }
+				}
+			}
+		}
+ 	}
+ }
+
+ 
+ /*
+ 	PRODUCT STYLES
+ 	---------------------------------------
+ */
+#products {
+	background: $grey_background;
+	padding: 2rem 0 6.5rem 0;
+	position: relative;
+	.product {
+		background: $white;
+		width: 31%;
+		float: left;
+		margin: -7rem 1% 0 1%;
+		padding: 3rem 2.5%;
+		text-align: center;
+		position: relative;
+		-webkit-box-shadow: 0px 0px 57px 0px rgba(4,6,9,0.25);
+		-moz-box-shadow: 0px 0px 57px 0px rgba(4,6,9,0.25);
+		box-shadow: 0px 0px 57px 0px rgba(4,6,9,0.25);
+		border-radius: .55rem;
+		h2{
+			color: $mustard;
+		}
+		h3 {
+			margin: 2px;
+			font-size: 1.5rem;
+			color: $dark_grey;
+		}
+		p {
+			margin: .5rem 0 2rem 0;
+			color: $brown;
+		}
+		.button {
+			padding: .5rem 2rem;
+		}
+	}
+}
+
+/*
+ 	COMPANY STYLES
+ 	---------------------------------------
+ */
+ .company{
+ 	background: $yellow;
+ 	padding: 3rem 2.5%;
+ 	position: relative;
+	h2{
+		color: $white;
+	}
+	.short-description{
+		color: $brown;
+	}
+
+ }
+
+/*
+ 	SPICES BLOG STYLES
+ 	---------------------------------------
+ */
+ .spices-blog{
+ 	padding: 3rem 2.5%;
+	h2{
+		color: $brown;
+	}
+	.short-description{
+		color: $brown;
+	}
+ }
+
+.product_posts{
+ 	background: $white;
+	width: 45%;
+	float: left;
+	text-align: center;
+	position: relative;
+	-webkit-box-shadow: 0px 0px 57px 0px rgba(4,6,9,0.25);
+	-moz-box-shadow: 0px 0px 57px 0px rgba(4,6,9,0.25);
+	box-shadow: 0px 0px 57px 0px rgba(4,6,9,0.25);
+	border-radius: .55rem;
+}
+
+/*
+ 	STANDARD POST FORMAT
+ 	---------------------------------------
+ */
+h1{
+	font-size: 48px;
+	font-weight: 200;
+	&.entry-title{
+		line-height: 1.5em;
+		margin: 50px 0 20px;
+		padding: 0;
+	}
+}
+
+.entry-meta{
+	font-size: 13px;
+	font-weight: 300;
+	color: $green;
+	a{
+
+	}
+}

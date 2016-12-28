@@ -1,0 +1,56 @@
+/*
+	@package sabores&colores theme
+*/
+
+.saboresycolores-general-form, 
+.saboresycolores-sidebar-preview{
+	display: inline-block;
+	float: left;
+}
+
+.saboresycolores-sidebar-preview{
+	width: 280px;
+	background-color: #f29600;
+	padding: 20px;
+	text-align: center;
+	margin-right: 20px;
+}
+
+.saboresycolores-sidebar{
+	display: block;
+	text-align: center;
+}
+
+h1.saboresycolores-username,
+h2.saboresycolores-description{
+	font-weight: 100;
+	color: #fff;
+}
+
+h1.saboresycolores-username{
+	font-size: 24px;
+	margin: 0 0 10px;
+}
+
+h2.saboresycolores-description{
+	font-size: 13px;
+	margin: 0 0 20px;
+}
+
+.image-container{
+	display: block;
+	width: 100%;
+	overflow: hidden;
+	text-align: center;
+}
+
+.profile-picture{
+	width: 180px;
+	height: 180px;
+	overflow: hidden;
+	border-radius: 50%;
+	margin: 20px auto;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
