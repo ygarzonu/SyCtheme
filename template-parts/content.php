@@ -1,7 +1,7 @@
 <?php
 /*
 
-	@package sabores&colores_theme
+	@package saboresycolores_theme
 	--Standard Post Format
 
 */
@@ -9,13 +9,12 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php the_title( '<h1 class="entry-title"><a href="'. esc_url( get_permalink() ) .'" rel="bookmark">', '</a></h1>'); ?>
-		
-		<div class="entry-meta">
-			<?php echo saboresycolores_posted_meta(); ?>
-		</div>
-	</header>
+
+	<?php if ( '' == get_header_image() && ! has_post_thumbnail() || is_front_page() ) : ?>
+		<header class="entry-header">
+			<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+		</header><!-- .entry-header -->
+	<?php endif; ?>
 
 	<div class="entry-content">
 		<?php if( has_post_thumbnail() ): 
@@ -26,16 +25,27 @@
 				<div class="standard-featured background-image" style="background-image: url(<?php echo $featured_image; ?>);"></div>
 			</a>
 		<?php endif; ?>
-		<div class="entry-excerpt">
-			<?php the_excerpt(); ?>
-		</div><!-- .entry-excerpt -->
-		<div class="button-container">
-			<a href="<?php the_permalink(); ?>" class="btn btn-default"><?php _e( 'Leer más...' ) ?></a>
-		</div><!-- .button-container -->
-	</div><!-- .entry-content -->
-	
-	<footer class="entry-footer">
-		<?php echo saboresycolores_posted_footer(); ?>
-	</footer>
+		<?php
+			the_content();
 
-</article>
+			wp_link_pages( array(
+				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'saboresycolores' ),
+				'after'  => '</div>',
+			) );
+		?>
+	</div><!-- .entry-content -->
+
+	<footer class="entry-footer">
+		<?php
+			edit_post_link(
+				sprintf(
+					/* translators: %s: Name of current post */
+					esc_html__( 'Edit %s', 'saboresycolores' ),
+					the_title( '<span class="screen-reader-text">"', '"</span>', false )
+				),
+				'<span class="edit-link">',
+				'</span>'
+			);
+		?>
+	</footer><!-- .entry-footer -->
+</article><!-- #post-## -->

@@ -3,7 +3,7 @@
 	/*
 		This is the template for the footer
 
-		@package sabores&colores_theme
+		@package saboresycolores_theme
 	*/
 ?>
 

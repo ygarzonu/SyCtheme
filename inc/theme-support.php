@@ -1,7 +1,7 @@
 <?php 
 
 /*
-@package sabores&colores theme
+@package saboresycolores theme
 
 	======================
 	THEME SUPPORT OPTIONS

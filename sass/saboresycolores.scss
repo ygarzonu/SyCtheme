@@ -1,5 +1,5 @@
 /*
-		@package sabores&colores_theme
+		@package saboresycolores_theme
 */
 
 /* 
@@ -9,6 +9,7 @@
 @import 'base/variables'; 	
 @import 'base/mixins';		
 @import 'base/fonticons';
+@import 'base/placeholders';
 
 
 /*	--------------------------------------------------------------
@@ -42,6 +43,11 @@ a{
 		color: $mustard;
 		text-decoration: none;
 	}
+}
+
+img{
+	max-width: 100%;
+	height: auto; 
 }
 
 .blackground-image{
@@ -91,15 +97,22 @@ a{
 	background: $red;
 }
 
+
+
 .cf:after,
-.cf:before {
+.cf:before,
+.site-header:before,
+.site-header:after, {
 	content: " ";
 	display: table;
+	table-layout: fixed;
 }
 
-.cf:after {
+.cf:after,
+.site-header:after {
 	clear: both;
 }
+
 
 
 /* 
@@ -107,11 +120,11 @@ a{
 	----------------------------------------------
 */
 .header-container{
+	@extend %text-shadow; 
 	position: relative;
 	display: block;
 	height: 590px;
-	z-index: -1;
-	text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+	z-index: -1;	
 }
 
 .nav-topheader{
@@ -243,41 +256,59 @@ nav-container{
 
  
  /*
- 	PRODUCT STYLES
+ 	PRODUCT CATEGORIES STYLES
  	---------------------------------------
  */
 #products {
 	background: $grey_background;
 	padding: 2rem 0 6.5rem 0;
 	position: relative;
-	.product {
+
+	.product-box {
 		background: $white;
 		width: 31%;
 		float: left;
 		margin: -7rem 1% 0 1%;
-		padding: 3rem 2.5%;
+		padding: 1.5rem .1%;
+		padding-bottom: 3rem;
 		text-align: center;
 		position: relative;
+		display: block;
 		-webkit-box-shadow: 0px 0px 57px 0px rgba(4,6,9,0.25);
 		-moz-box-shadow: 0px 0px 57px 0px rgba(4,6,9,0.25);
 		box-shadow: 0px 0px 57px 0px rgba(4,6,9,0.25);
 		border-radius: .55rem;
 		h2{
 			color: $mustard;
+			font-weight: bold;
 		}
-		h3 {
-			margin: 2px;
-			font-size: 1.5rem;
-			color: $dark_grey;
-		}
-		p {
-			margin: .5rem 0 2rem 0;
+		h5 {			
 			color: $brown;
 		}
 		.button {
 			padding: .5rem 2rem;
 		}
 	}
+}
+div.product-categorie-thumbnail img{
+			height: 220px;
+			
+		}
+
+aside.product-categorie-sidebar{
+	float: left;
+	width: 400px;
+	margin: 0 40px 0 0;
+}
+
+div.product-categorie-images{
+	float: left;
+	width: 500px;
+}
+
+div.product-categorie-images img{
+	margin-bottom: 50px;
+	border: 1px solid #dddddd;
 }
 
 /*
@@ -288,6 +319,7 @@ nav-container{
  	background: $yellow;
  	padding: 3rem 2.5%;
  	position: relative;
+ 	width: 100%;
 	h2{
 		color: $white;
 	}
@@ -325,7 +357,7 @@ nav-container{
 
 /*
  	STANDARD POST FORMAT
- 	---------------------------------------
+ 	-----------------------------------------------
  */
 h1{
 	font-size: 48px;
@@ -343,5 +375,33 @@ h1{
 	color: $green;
 	a{
 
+	}
+}
+
+/* 
+	IMAGE POST FORMAT 
+	------------------------------------------------
+*/
+.saboresycolores-format-image { 
+	margin-top: 20px;
+	.entry-header { 
+		background: no-repeat scroll left center / cover rgba(0, 0, 0, 0);
+		@extend %text-shadow; 
+		position: relative; 
+		&.image-caption { 
+			@extend %background-gradient;
+
+		}
+	}
+	h1, 
+	.entry-meta,
+	.entry-header { 
+		color: #ffffff;
+		a { 
+			color: #ffffff; 
+		}
+	}	
+	h1 { 
+		padding-top: 10px; 
 	}
 }

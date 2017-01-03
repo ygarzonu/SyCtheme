@@ -1,7 +1,7 @@
 <?php 
 
 /*
-@package sabores&colores_theme
+@package saboresycolores_theme
 
 	======================
 	ADMIN PAGE
@@ -11,7 +11,7 @@
 function saboresycolores_add_admin_page(){
 
 	//Generate Sabores&Colores Admin Page
-	add_menu_page( 'SaboresyColores Theme Options', 'Sabores&Colores', 'manage_options', 'ejc_saboresycolores', 'saboresycolores_theme_create_page', 'dashicons-carrot', 110);
+	add_menu_page( 'SaboresyColores Theme Options', 'SaboresyColores', 'manage_options', 'ejc_saboresycolores', 'saboresycolores_theme_create_page', 'dashicons-carrot', 25);
 
 	//Generate Sabores&Colores Admin Subpages
 	add_submenu_page('ejc_saboresycolores','SaboresyColores Sidebar Options', 'Barra lateral', 'manage_options', 'ejc_saboresycolores', 'saboresycolores_theme_create_page');
@@ -79,7 +79,7 @@ function saboresycolores_custom_css_section_callback(){
 function saboresycolores_custom_css_callback(){
 	$css = get_option( 'saboresycolores_css' );
 	$css = ( empty($css) ? '/* CSS de tema Sabores&Colores personalizado */' : $css );
-	echo '<div id="customCss">'.$css.'</div><textarea id="saboresycolores_css" name="saboresycolores_css" style="display:none; visibility:hidden"'.$css.'</textarea>';
+	echo '<div id="customCss">'.$css.'</div><textarea id="saboresycolores_css" name="saboresycolores_css" style="display:none; visibility:hidden;"'.$css.'</textarea>';
 }
 
 

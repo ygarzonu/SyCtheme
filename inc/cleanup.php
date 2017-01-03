@@ -1,7 +1,7 @@
 <?php 
 
 /*
-		@package sabores&colores_theme
+		@package saboresycolores_theme
 
 		=======================================
 		REMOVE GENEERATOR VERSION NUMBER

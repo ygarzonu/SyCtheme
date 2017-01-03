@@ -1,7 +1,7 @@
 <?php
 /*
 	
-@package sabores&colores_theme
+@package saboresycolores_theme
 	
 	========================
 		WALKER NAV CLASS
@@ -53,6 +53,8 @@ class SaboresyColores_Walker_Nav_Primary extends Walker_Nav_menu {
 		$item_output .= ( $depth == 0 && $args->walker->has_children ) ? ' <b class="caret"></b></a>' : '</a>';
 		$item_output .= $args->after;
 		
-		$output .= apply_filters ( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );		
-	}	
+		$output .= apply_filters ( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+		
+	}
+	
 }

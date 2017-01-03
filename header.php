@@ -3,7 +3,7 @@
 	/*
 		This is the template for the header
 
-		@package sabores&colores_theme
+		@package saboresycolores_theme
 	*/
 ?>
 
@@ -24,7 +24,7 @@
 
 	<body <?php body_class(); ?>>
 		<div class="container-fluid">			
-			<header class="header-main">					
+			<header class="header-main site-header">					
 				<div class="col-xs-6 col-md-4">
 					<a href="<?php echo home_url(); ?>" id="logo"><?php echo "empresa"; ?></a>
 	   			</div>
@@ -40,7 +40,7 @@
 					?>
 					</nav>
 				</div>					
-			</header>			
+			</header>
 		</div><!-- .container-fluid --> 
 
 		<div id="content" class="site-content">

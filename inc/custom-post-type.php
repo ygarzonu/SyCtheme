@@ -1,7 +1,7 @@
 <?php 
 
 /*
-@package sabores&colores theme
+@package saboresycolores theme
 
 	======================
 	THEME CUSTOM POST TYPES
@@ -23,9 +23,12 @@
 			'rewrite'		=>	array(
 				'slug'		=>	'categoria-productos'
 				),
+			'menu_icon'			=> 'dashicons-store',
+			'supports'			=> array( 'title', 'editor', 'thumbnail')
 			);
 
 		register_post_type( 'categoria_productos', $args );
+		add_post_type_support( 'page', 'post-formats' );
 	}
 	
 	//Hook this custom post type function into the Sabores & Colores theme
