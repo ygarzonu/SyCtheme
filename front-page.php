@@ -7,7 +7,6 @@ get_header(); ?>
 
 	<section>
 		<div class="header-container background-image" style="background-image: url(<?php header_image(); ?>);">
-
 			<div class="header-content table">
 				<div class="table-cell">
 					<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>				
@@ -47,8 +46,7 @@ get_header(); ?>
 					</div>
 				</div>
 				<div class="about-company col-md-8">
-				  	<?php
-				      	$query = new WP_Query( array('page_id'=>24));?>
+				  	<?php $query = new WP_Query( array('page_id'=>24));?>
 				    <?php while ( $query->have_posts() ) : $query->the_post();
 			            $second_title = get_field('titulo_alterno');
 			            $short_description = get_field('descripcion_corta');?>
@@ -65,15 +63,21 @@ get_header(); ?>
 
 		<section class="spices-blog">
 			<div class="content">
-				<div id="spices">
-					<h3>Cuál escogerás hoy?</h3>
+				<h2>Cuál escogerás hoy?</h2>
+				<div class="cf">
+					<div class="wrapper">	
 						<?php query_posts('post_per_page=2'); ?>
 						<?php while ( have_posts() ) : the_post(); ?>
-							<h4 id="title_post"><?php the_title(); ?></h4>
+						<div id="spices-post" class="post-box">								
 							<?php the_post_thumbnail(); ?>
-							<a id="read-more-link" class="read-more-link" href="<?php the_permalink(); ?>">Leer...</a>
+							<div class="post-title">
+								<h4 id="title_post"><?php the_title(); ?></h4>
+								<a id="read-more-link" class="read-more-link" href="<?php the_permalink(); ?>">Leer...</a>
+							</div>
+						</div>
 						<?php endwhile; ?>
 						<?php wp_reset_query(); ?>
+					</div>
 				</div>
 			</div>
 		</section>		
