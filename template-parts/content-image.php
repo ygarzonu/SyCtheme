@@ -9,12 +9,10 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'saboresycolores-format-image' ); ?>>
-	<?php if( has_post_thumbnail() ): 
-			$featured_image = wp_get_attachment_url( get_post_thumbnail_id( get_the_ID() ) );
-	?>
-	<?php endif; ?>
-	<header class="entry-header Text-center background-image"  style="background-image: url(<?php echo $featured_image; ?>);">
-		<?php the_title( '<h1 class="entry-title"><a href="'. esc_url( get_permalink() ) .'" rel="bookmark">', '</a></h1>' ); ?>
+	
+
+	<header class="entry-header Text-center background-image"  style="background-image: url(<?php echo saboresycolores_get_attatchment();?>);">
+		<h1><?php the_title( ); ?></h1>
 	</header><!-- .entry-header -->
 	
 	<div class="responsive">

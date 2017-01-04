@@ -24,11 +24,9 @@
 
 	<body <?php body_class(); ?>>
 		<div class="container-fluid">			
-			<header id="menubar" class="header-main site-header ">					
-				<div class="col-xs-6 col-md-4">
-					<a href="<?php echo home_url(); ?>" id="logo"><?php echo "empresa"; ?></a>
-	   			</div>
-	   			<div class="col-xs-12 col-sm-6 col-md-8">
+			<header id="menubar" class="header-main site-header ">				
+				<div class="nav-container">
+					<a href="<?php echo home_url(); ?>" id="logo"><?php echo "empresa"; ?></a>	   			
 					<nav class="navbar navbar-saboresycolores" role="navigation">
 					<?php 
 						wp_nav_menu( array(
@@ -38,8 +36,8 @@
 										'walker' => new SaboresyColores_Walker_Nav_Primary()
 						) );
 					?>
-					</nav>
-				</div>					
+					</nav>					
+				</div>				
 			</header>
 		</div><!-- .container-fluid --> 
 

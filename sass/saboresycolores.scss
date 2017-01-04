@@ -72,7 +72,7 @@ img{
 		display: table-cell;
 		vertical-align: -webkit-baseline-middle;
 		text-align: center;
-	    padding-top: 12rem;
+	    padding-top: 22rem;
 	}
 }
 
@@ -104,6 +104,7 @@ img{
 .button_highlight:hover {
     background-color: $brown; 
     color: $mustard;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 12px 30px 0 rgba(0,0,0,0.19);
 }
 
 
@@ -357,35 +358,45 @@ div.product-categorie-images img{
 	}
  }
 
-.post-box{
-	width: 48%;
-	float: right;
-	margin: 0.5rem 1% 0 1%;
-	padding: 1.5rem .1%;
-	text-align: center;
-	position: relative;
-	display: block;
-	.post-title{
-		margin: -10rem 1% 0 1%; 
+	.post-box{
+		width: 48%;		
+		float: right;
+		margin: 0.5rem 1% 0 1%;
+		padding: 1.5rem .1%;
+		vertical-align: -webkit-baseline-middle;
+		text-align: center;
+		position: relative;
+		display: block;	
+		figure{
+			margin: 0 8rem;
+			height: 350px;
 	}
 }
 
-.product_posts{
- 	background: $white;
-	width: 45%;
-	float: left;
-	text-align: center;
-	position: relative;
-	-webkit-box-shadow: 0px 0px 57px 0px rgba(4,6,9,0.25);
-	-moz-box-shadow: 0px 0px 57px 0px rgba(4,6,9,0.25);
-	box-shadow: 0px 0px 57px 0px rgba(4,6,9,0.25);
-	border-radius: .55rem;
-}
+
+/*
+ 	CONTACT STYLES
+ 	---------------------------------------
+ */
+ .contact{
+ 	background: $green;
+ 	padding: 3rem 2.5%;
+ 	position: relative;
+ 	width: 100%;
+	h2{
+		color: $white;
+	}
+ }
 
 /*
  	STANDARD POST FORMAT
  	-----------------------------------------------
  */
+article{
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+
 h1{
 	font-size: 48px;
 	font-weight: 200;
@@ -411,7 +422,7 @@ h1{
 	------------------------------------------------
 */
 .saboresycolores-format-image { 
-	margin-top: 20px;
+	padding-top: 20px;
 	.entry-header { 
 		background: no-repeat scroll left center / cover rgba(0, 0, 0, 0);
 		@extend %text-shadow; 
@@ -430,6 +441,6 @@ h1{
 		}
 	}	
 	h1 { 
-		padding-top: 10px; 
+		padding: 20px 0; 
 	}
 }
