@@ -24,7 +24,7 @@
 				'slug'		=>	'categoria-productos'
 				),
 			'menu_icon'			=> 'dashicons-store',
-			'supports'			=> array( 'title', 'editor', 'thumbnail')
+			'supports'			=> array( 'title', 'editor', 'thumbnail', 'post-formats')
 			);
 
 		register_post_type( 'categoria_productos', $args );

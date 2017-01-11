@@ -41,7 +41,7 @@ function saboresycolores_load_admin_scripts( $hook ){
 		wp_enqueue_style( 'ace', get_template_directory_uri() . '/css/saboresycolores.ace.css', array(), '1.0.0', 'all' );
 		
 		wp_enqueue_script( 'ace', get_template_directory_uri() . '/js/ace/ace.js', array('jquery'), '1.2.1', true );
-		wp_enqueue_script( 'saboresycolores-custom-css-script', get_template_directory_uri() . '/js/saboresycolores.custom_css.js', array('jquery'), '1.0.0', true );
+		//wp_enqueue_script( 'saboresycolores-custom-css-script', get_template_directory_uri() . '/js/saboresycolores.custom_css.js', array('jquery'), '1.0.0', true );
 	
 	} else { return; }
 	
@@ -63,6 +63,7 @@ function saboresycolores_load_scripts(){
 	wp_register_script( 'jquery' , get_template_directory_uri() . '/js/jquery.js', false, '1.11.3', true );
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), '3.3.6', true );
+	//wp_enqueue_script( 'saboresycolores', get_template_directory_uri() . '/js/saboresycolores.js', array('jquery'), '1.0.0', true );
 	
 }
 add_action( 'wp_enqueue_scripts', 'saboresycolores_load_scripts' );

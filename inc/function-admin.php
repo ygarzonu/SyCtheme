@@ -28,6 +28,8 @@ function saboresycolores_add_admin_page(){
 
 add_action( 'admin_menu', 'saboresycolores_add_admin_page' );
 
+
+
 function saboresycolores_custom_settings(){
 	//Sidebar options
 	register_setting('saboresycolores-settings-group', 'profile_picture');

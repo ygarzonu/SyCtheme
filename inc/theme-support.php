@@ -28,15 +28,23 @@
 		add_theme_support( 'custom-background' );
 	}
 
+	add_theme_support( 'custom-logo', array(
+		'height'      => 64,
+		'width'       => 338,
+		'flex-height' => true,
+		'flex-width'  => true,
+    	'header-text' => array( 'site-title', 'site-description' ),
+	) );
+	
 	add_theme_support( 'post-thumbnails' );
 
 	/* Activate Nav Menu Option */
 	function saboresycolores_register_nav_menu(){
-		register_nav_menu( 'primary', 'Primary Navigation Menu' );
+		register_nav_menu( 'primary', 'Header Navigation Menu' );
 	}
 	add_action( 'after_setup_theme', 'saboresycolores_register_nav_menu' );
 
-
+	
 	/*
 		============================
 		LOGO FUNCTION
@@ -205,24 +213,34 @@ function saboresycolores_get_options_name(){
 		return '<div clas="post-footer-container"><div class="row"><div class="col-xs-12 col-sm-6">' . get_the_tag_list('<div class="tags-list"><span class="saboresycolores-icon saboresycolores-tag"></span>', ' ', '</div>') . '</div><div class="col-xs-12 col-sm-6">' . $comments . '</div>';
 	}
 
-	function saboresycolores_get_attatchment(){
+	function saboresycolores_get_attachment( $num = 1 ){	
 		$output = '';
-		if( has_post_thumbnail() ): 
+		if( has_post_thumbnail() && $num == 1 ): 
 			$output = wp_get_attachment_url( get_post_thumbnail_id( get_the_ID() ) );
 		else:
-			$attachments = get_posts( array(
-			'post_type' 		=> 'attachment',
-			'posts_per_page' 	=> 1,
-			'post_parent'		=> get_the_ID()
+			$attachments = get_posts( array( 
+				'post_type' => 'attachment',
+				'posts_per_page' => $num,
+				'post_parent' => get_the_ID()
 			) );
-			if( $attachments ):
+			if( $attachments && $num == 1 ):
 				foreach ( $attachments as $attachment ):
-					$featured_image = wp_get_attachment_url( $attachment->ID );
+					$output = wp_get_attachment_url( $attachment->ID );
 				endforeach;
+			elseif( $attachments && $num > 1 ):
+				$output = $attachments;
 			endif;
-
+			
 			wp_reset_postdata();
-
-		endif;		
+			
+		endif;
+		
 		return $output;
 	}
+
+	function saboresycolores_grab_url(){
+		if( ! preg_match( '/<a\s[^>]*?href=[\'"](.+?)[\'"]/i', get_the_content(), $links ) ){
+		return false;
+	}
+	return esc_url_raw( $links[1] );
+}

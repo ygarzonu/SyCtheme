@@ -23,6 +23,11 @@
     transform: $val;
 }
 
+@mixin fullwidth (){
+  width: 100%;
+  height: auto;
+}
+
 /*********************
 BREAKPOINTS
 *********************/

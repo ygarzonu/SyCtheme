@@ -23,22 +23,30 @@
 	</head>
 
 	<body <?php body_class(); ?>>
-		<div class="container-fluid">			
-			<header id="menubar" class="header-main site-header ">				
-				<div class="nav-container">
-					<a href="<?php echo home_url(); ?>" id="logo"><?php echo "empresa"; ?></a>	   			
-					<nav class="navbar navbar-saboresycolores" role="navigation">
-					<?php 
-						wp_nav_menu( array(
-										'theme_location' => 'primary',
-										'container' => false,
-										'menu_class' => 'nav navbar-nav',
-										'walker' => new SaboresyColores_Walker_Nav_Primary()
-						) );
-					?>
-					</nav>					
-				</div>				
-			</header>
+		<div class="site">			
+			<header id="menubar" class="saboresycolores-header header-main site-header ">				
+			<div class="nav-container">
+				<div class="site-branding">
+					<a class="custom-logo" href="<?= esc_url(home_url('/')); ?>"><?php the_custom_logo() ?></a>
+				</div>
+				<nav id="menubar" class="navbar-saboresycolores" role="navigation" >
+					<nav>
+						<ul>
+		   					<li>
+							<?php 
+								wp_nav_menu( array(
+											'theme_location' 	=> 'primary',
+											'container' 		=> false,
+											'menu_class' 		=> 'nav navbar-nav',
+											'walker' 			=> new SaboresyColores_Walker_Nav_Primary()
+								) );
+							?>
+		  					</li>    
+						</ul>
+					</nav>				
+				</nav>
+			</div> 		
+		</header>
 		</div><!-- .container-fluid --> 
 
-		<div id="content" class="site-content">
+		<div id="content" class="site-content" role="main">
