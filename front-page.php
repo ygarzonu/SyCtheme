@@ -69,7 +69,7 @@ get_header(); ?>
 			<div class="wrapper">	
 				<?php query_posts('post_per_page=2'); ?>
 				<?php while ( have_posts() ) : the_post(); ?>
-				<div id="spices-post" class="post-box">
+				<div id="spices-post" class="entry-media post-box">
 					<?php if( has_post_thumbnail() ): 
 						$featured_image = wp_get_attachment_url( get_post_thumbnail_id( get_the_ID() ) );
 					?>

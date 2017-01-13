@@ -20,8 +20,7 @@
 		
 		<?php the_content(); ?>
 		
-		</div>		
-	</div><!-- .entry-content -->
+	</div><!-- .entry-content -->	
 	
 	<footer class="entry-footer">
 		<?php echo saboresycolores_posted_footer(); ?>

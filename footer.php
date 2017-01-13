@@ -7,12 +7,10 @@
 	*/
 ?>
 
-</div><!-- #main -->
-	</div><!-- #page -->
+<footer class="saboresycolores-footer text-center">
+	<?php echo get_bloginfo( '<p class="info-footer"></p>' ); ?>
+</footer>
 
-	<?php wp_footer(); ?>
-
-	<a href="#top" id="top-link"></a>
-
+<?php wp_footer(); ?>
 </body>
 </html>

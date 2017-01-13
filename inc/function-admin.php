@@ -176,17 +176,17 @@ function saboresycolores_sanitize_custom_css( $input ){
 
 //Template submenu functions
 function saboresycolores_theme_create_page() {
-	require_once( get_template_directory() . "/inc/templates/saboresycolores-admin.php");
+	require_once( get_template_directory() . '/inc/templates/saboresycolores-admin.php');
 }
 
 function saboresycolores_theme_support_page(){
-	require_once( get_template_directory() . "/inc/templates/saboresycolores-theme-support.php");
+	require_once( get_template_directory() . '/inc/templates/saboresycolores-theme-support.php');
 }
 
 function saboresycolores_contact_form_page(){
-	require_once( get_template_directory() . "/inc/templates/saboresycolores-contact-form.php");
+	require_once( get_template_directory() . '/inc/templates/saboresycolores-contact-form.php');
 }
 
 function saboresycolores_theme_settings_page() {
-	require_once( get_template_directory() . "/inc/templates/saboresycolores-custom-css.php");
+	require_once( get_template_directory() . '/inc/templates/saboresycolores-custom-css.php');
 }

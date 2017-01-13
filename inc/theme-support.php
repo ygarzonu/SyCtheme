@@ -44,6 +44,9 @@
 	}
 	add_action( 'after_setup_theme', 'saboresycolores_register_nav_menu' );
 
+	/* Activate HTML5 features */
+	add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
+
 	
 	/*
 		============================
@@ -170,6 +173,30 @@ function saboresycolores_get_options_name(){
 		update_option($options_name, $saboresycolores_values);
 	}
 
+
+	/*
+		============================
+		SIDEBAR FUNCTIONS
+		============================
+	*/
+
+		function saboresycolores_sidebar_init() {
+			register_sidebar(
+				array(
+					'name'				=>	esc_html__( 'Barra lateral Sabores y Colores', 'saboresycolorestheme' ),
+					'id'				=>	'saboresycolores-sidebar',
+					'description'		=>	'Barra Derecha Lateral Dinámica',
+					'before_widget'		=>	'<section id="%1$s" class="saboresycolores-widget %2$s">',
+					'after-widget'		=>	'</section>',
+					'before_title'		=>	'<h2 class="saboresycolores-widget-title">',
+					'after-title'		=>	'</h2>'	
+					)
+				);
+		}
+
+		add_action( 'widgets_init', 'saboresycolores_sidebar_init' );
+
+
 	/*
 		============================
 		BLOG LOOP CUSTOM FUNCTIONS
@@ -243,4 +270,61 @@ function saboresycolores_get_options_name(){
 		return false;
 	}
 	return esc_url_raw( $links[1] );
+}
+
+/*
+	========================
+		SINGLE POST CUSTOM FUNCTIONS
+	========================
+*/
+function saboresycolores_post_navigation(){
+	
+	$nav = '<div class="row">';
+	
+	$prev = get_previous_post_link( '<div class="post-link-nav"><span class="saboresycolores-icon saboresycolores-chevron-left" aria-hidden="true"></span> %link</div>', '%title' );
+	$nav .= '<div class="col-xs-12 col-sm-6">' . $prev . '</div>';
+	
+	$next = get_next_post_link( '<div class="post-link-nav">%link <span class="saboresycolores-icon saboresycolores-chevron-right" aria-hidden="true"></span></div>', '%title' );
+	$nav .= '<div class="col-xs-12 col-sm-6 text-right">' . $next . '</div>';
+	
+	$nav .= '</div>';
+	
+	return $nav;
+	
+}
+
+function saboresycolores_share_this( $content ){
+	
+	if( is_single() ){
+	
+		$content .= '<div class="saboresycolores-sharethis"><h4>Comparte!</h4>';
+				
+		$title = get_the_title();
+		$permalink = get_permalink();
+		
+		$twitterHandler = ( get_option('twitter_handler') ? '&amp;via='.esc_attr( get_option('twitter_handler') ) : '' );
+		
+		$twitter = 'https://twitter.com/intent/tweet?text=Hey! Read this: ' . $title . '&amp;url=' . $permalink . $twitterHandler .'';
+		$facebook = 'https://www.facebook.com/sharer/sharer.php?u=' . $permalink;
+		$google = 'https://plus.google.com/share?url=' . $permalink;
+			
+		$content .= '<ul>';
+		$content .= '<li><a href="' . $twitter . '" target="_blank" rel="nofollow"><span class="dashicons dashicons-twitter"></span></a></li>';
+		$content .= '<li><a href="' . $facebook . '" target="_blank" rel="nofollow"><span class="dashicons dashicons-facebook"></span></a></li>';
+		$content .= '<li><a href="' . $google . '" target="_blank" rel="nofollow"><span class="dashicons dashicons-googleplus"></span></a></li>';
+		$content .= '</ul></div><!-- .saboresycolores-share -->';
+		
+		return $content;
+	
+	} else {
+		return $content;
+	}
+	
+}
+add_filter( 'the_content', 'saboresycolores_share_this' );
+
+function saboresycolores_get_post_navigation(){
+	if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ): 
+		require( get_template_directory() . '/inc/templates/saboresycolores-comment-nav.php' );
+	endif;
 }

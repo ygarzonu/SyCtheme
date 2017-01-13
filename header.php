@@ -23,6 +23,13 @@
 	</head>
 
 	<body <?php body_class(); ?>>
+
+	<div class="saboresycolores-sidebar">
+		<div class="sidebar-scroll">
+			<?php get_sidebar(); ?>
+		</div>
+	</div>
+
 		<div class="site">			
 			<header id="menubar" class="saboresycolores-header header-main site-header ">				
 			<div class="nav-container">
