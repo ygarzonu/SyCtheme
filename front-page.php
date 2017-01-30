@@ -5,14 +5,8 @@
 
 get_header(); ?>
 
-	<section class="banner" style="background-image: url(<?php header_image(); ?>);">
-		<div class="banner__caption" >
-			<div class="container">
-				<div class="row">
-					<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>				
-				</div><!-- .table-cell -->				
-			</div><!-- .header-content -->
-		</div><!-- .header-container -->
+	<section class="banner">
+		<div class="headerslider"> <?php echo do_shortcode('[sp_responsiveslider cat_id="8" limit="-1" pagination="false" design="design-2"]'); ?></div>
 	</section><!-- .banner -->
 
 	<section id="products" class="sheet sheet--products">
@@ -28,8 +22,8 @@ get_header(); ?>
 					       	<div class="product-categorie-thumbnail">
 					       		<?php the_post_thumbnail(); ?>
 					       	</div>
-					       	<h5><?php echo $description_category; ?></h5><br/>
-					       	<a class="button button_highlight button_small" href="<?php the_permalink(); ?>">Ver Alacena <span>&rsaquo;</span></a>
+					       	<h5><?php echo $description_category; ?></h5>
+					       	<a class="button button_highlight" href="<?php the_permalink(); ?>">Ver Alacena <span>&rsaquo;</span></a>
 				      	</div><!-- product -->
 				        <?php endwhile; ?> 
 				    <?php wp_reset_query(); ?>					     		
@@ -40,69 +34,60 @@ get_header(); ?>
 	</section><!-- .sheet.products -->
 
 	<section id="company" class="sheet sheet--company">
-		<div class="sheet__image bit-2">
-			<?php if( has_post_thumbnail() ): 
-				$featured_image = wp_get_attachment_url( get_post_thumbnail_id( get_the_ID() ) );
-			?>			
-			<div class="sheet__image-content">
-				<?php echo $featured_image; ?>
-			</div><!-- .sheet__image-content -->
-			<?php endif; ?>	
-		</div><!-- .sheet__image -->				
-		<div class="sheet__description bit-2">
-		  	<?php $query = new WP_Query( array('page_id'=>24));?>
+	<div class="row">
+	
+		<div class="col-md-4 ">			
+				<div class="company_love" style="background-image: url(<?php echo saboresycolores_get_attachment(); ?>);"></div>	
+				<?php echo get_the_post_thumbnail( 'full' ); ?>
+			
+		</div><!-- .col-md-4 -->				
+		
+		<div class="col-md-8 historia">
+		  	<?php $query = new WP_Query( array('page_id'=>7));?>
 		    <?php while ( $query->have_posts() ) : $query->the_post();
 		        $second_title = get_field('titulo_alterno');
 		        $short_description = get_field('descripcion_corta');?>
 		        <h2 class="title"><?php echo $second_title; ?></h2>				        
 			    <h5><?php echo $short_description; ?></h5>
-			    <a href="<?php the_permalink(); ?>">Acerca de SyC</a>				    	    			
+			    <div class="button-container text-center">
+					<a href="<?php the_permalink(); ?>" class="btn-saboresycolores"><?php _e( 'Acerca de SyC' ); ?></a>
+				</div>
 		    <?php endwhile; ?>
-		    <?php wp_reset_query(); ?>
-	    </div><!-- .sheet__description -->				
+		    
+	    </div><!-- .col-md-8 .historia -->	
+	    <?php wp_reset_query(); ?>			
+	    </div>
 	</section><!-- .sheet.company -->
 		
 	<?php if ( have_posts() ): ?>
 	<section id="articles" class="sheet sheet--articles">			
 		<h2>Cuál escogerás hoy?</h2>
-		<div class="cf">
+		<div id="blogpost" class="cf">
 			<div class="wrapper">	
 				<?php query_posts('post_per_page=2'); ?>
 				<?php while ( have_posts() ) : the_post(); ?>
-				<div id="spices-post" class="entry-media post-box">
-					<?php if( has_post_thumbnail() ): 
-						$featured_image = wp_get_attachment_url( get_post_thumbnail_id( get_the_ID() ) );
-					?>
-					<?php endif; ?>	
-					<figure class="post-blog" style="background-image: url(<?php echo $featured_image; ?>)";>						
-						
-						<h4><?php the_title( ); ?></h4><br/>
-						<a id="read-more-link" class="read-more-link" href="<?php the_permalink(); ?>">Leer...</a>				
-						
-					</figure>						
-				</div>
+				<div id="spices-post" class=" post-box">
+					<div class="post-blog" style="background-image: url(<?php echo saboresycolores_get_attachment(); ?>);">
+						<div class="title-post">
+							<h4><?php the_title( ); ?></h4><br/>
+							<a id="read-more-link" class="read-more-link" href="<?php the_permalink(); ?>">Leer...</a>			
+						</div><!-- .title-post -->	
+					</div><!-- .post-blog -->									
+				</div><!-- .post-box -->
 				<?php endwhile; ?>
 				<?php wp_reset_query(); ?>
 			</div><!-- .wrapper -->
 		</div><!-- .cf -->
 	</section><!-- .sheet.articles -->
-		<?php endif; ?>
+	<?php endif; ?>
 
-		<section class=" container contact">
+	<section class=" container contact">
 			
-				<div class="contact-form">
-				  	<?php $query = new WP_Query( array('page_id'=>24));?>
-				    <?php while ( $query->have_posts() ) : $query->the_post();
-			            $second_title = get_field('titulo_alterno');
-			            $short_description = get_field('descripcion_corta');?>
-				        <h2 class="title"><?php echo $second_title; ?></h2>
-				        <div class="short-description">
-					        <h5><?php echo $short_description; ?></h5>
-					        <a href="<?php the_permalink(); ?>">Acerca de SyC</a>
-				    	</div><!-- .short-description -->        			
-				    <?php endwhile; ?>
-				    <?php wp_reset_query(); ?>
-			    </div><!-- .about-company -->
+		<div class="contact-form">
+		  	<div class="contactus">
+		  	<h2>Contacto</h2>
+		  		<a href="<?php echo site_url('/contacto/'); ?>" class="btn btn-saboresycolores">Me interesa</a>
+		  	</div>
 		</section>				
 				
 	</div><!-- .saboresycolores-content -->

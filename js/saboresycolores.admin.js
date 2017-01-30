@@ -37,10 +37,7 @@ jQuery(document).ready( function($){
 			$('#profile-picture').val('');
 			$('.saboresycolores-general-form').submit();
 			//console.log('Si por favor, eliminarla!');
-		} else {
-			
-			//console.log('OMG, No por favor!');
-		}
+		} 
 		return;
 	});
 });

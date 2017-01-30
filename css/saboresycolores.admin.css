@@ -1,56 +1,140 @@
 /*
-	@package saboresycolores theme
+	@package saboresycolorestheme
 */
-
-.saboresycolores-general-form, 
-.saboresycolores-sidebar-preview{
-	display: inline-block;
-	float: left;
-}
-
-.saboresycolores-sidebar-preview{
-	width: 280px;
-	background-color: #f29600;
-	padding: 20px;
-	text-align: center;
-	margin-right: 20px;
-}
-
-.saboresycolores-sidebar{
-	display: block;
-	text-align: center;
-}
-
+/*
+	Import
+	------------------------------------------------
+*/
 h1.saboresycolores-username,
-h2.saboresycolores-description{
-	font-weight: 100;
-	color: #fff;
+h2.saboresycolores-description {
+  font-weight: 500;
+  color: #fff;
 }
 
-h1.saboresycolores-username{
-	font-size: 24px;
-	margin: 0 0 10px;
+h1.saboresycolores-username {
+  font-size: 24px;
+  margin: 0 0 10px;
 }
 
-h2.saboresycolores-description{
-	font-size: 13px;
-	margin: 0 0 20px;
+h2.saboresycolores-description {
+  font-size: 13px;
+  margin: 0 0 20px;
 }
 
-.image-container{
-	display: block;
-	width: 100%;
-	overflow: hidden;
-	text-align: center;
+.saboresycolores-icon-sidebar {
+  color: white;
+  margin: 0 2px;
 }
 
-.profile-picture{
-	width: 180px;
-	height: 180px;
-	overflow: hidden;
-	border-radius: 50%;
-	margin: 20px auto;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
+.saboresycolores-icon-sidebar:before {
+  width: 22px;
+  height: 22px;
+  font-size: 22px;
+}
+
+.saboresycolores-icon-button:before {
+  margin-top: 3px;
+  margin-left: -3px;
+}
+
+.image-container {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+}
+
+.profile-picture {
+  width: 180px;
+  height: 180px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 20px auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.saboresycolores-widget.widget_search {
+  padding-top: 40px;
+}
+
+#wpcontent {
+  font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Arial, Verdana, sans-serif;
+  font-weight: 300;
+}
+
+h1, h2, h3, h4, h5,
+.form-table th,
+.form-wrap label {
+  font-weight: 600;
+}
+
+.saboresycolores-general-form,
+.saboresycolores-sidebar-preview {
+  display: inline-block;
+  float: left;
+}
+
+.saboresycolores-sidebar-preview {
+  width: 280px;
+  background-color: #f29600;
+  padding: 20px;
+  text-align: center;
+  margin-right: 20px;
+}
+
+.saboresycolores-sidebar {
+  display: block;
+  text-align: center;
+}
+
+.saboresycolores-general-form input[type=text] {
+  width: 100%;
+  padding: 5px 50px 5px 5px;
+  margin: 2px 0;
+  box-sizing: border-box;
+}
+
+.saboresycolores-footer-preview {
+  background-color: #e51c24;
+  clear: both;
+  width: 100%;
+  font-size: 12px;
+  float: left;
+  clear: both;
+  width: 100%;
+  font-size: 12px;
+  float: left;
+  color: #fff;
+  padding: 10px 40px;
+}
+
+li.saboresycolores-address,
+li.saboresycolores-phone,
+li.saboresycolores-celphone,
+li.saboresycolores-city {
+  font-weight: 400;
+  color: #fff;
+}
+
+h2.saboresycolores-footer {
+  font-weight: 500;
+  font-size: 13px;
+  color: #f09600;
+}
+
+.saboresycolores-footer-widget .saboresycolores-footer ul li {
+  width: 160px;
+  float: left;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-left: #fff;
+  padding-right: 5px;
+}
+
+section .saboresycolores-widget .saboresycolores-footer-widget,
+section .saboresycolores-widget .widget_nav_menu {
+  width: 320px;
+  float: left;
 }

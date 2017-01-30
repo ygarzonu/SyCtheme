@@ -1,13 +1,28 @@
-<div id="sidebar">
-	<?php if ( has_nav_menu( 'secondary' ) ) : ?>
-		<nav role="navigation" class="navigation site-navigation secondary-navigation">
-			<?php wp_nav_menu( array( 'theme_location' => 'secondary' ) ); ?>
-		</nav>
-	<?php endif; ?>
+<?php
+	
+	/*
+		This is the template for the sidebar
 
-	<?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
-		<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
-			<?php dynamic_sidebar( 'sidebar-1' ); ?>
-		</div><!-- #primary-sidebar -->
-	<?php endif; ?>
-</div><!-- #secondary -->
+		@package saboresycolores_theme
+	*/
+
+
+	if ( !is_active_sidebar( 'saboresycolores-sidebar' )  ) {
+		return;
+	}
+
+?>
+
+<aside class="sidebar widget-area" role="complementary">
+	<div class="visible-xs visible-sm visible-md">
+	<?php 
+		wp_nav_menu( array(
+			'theme_location' 	=> 'primary',
+			'container' 		=> false,
+			'menu_class' 		=> 'nav navbar-nav navbar-collapse',
+			'walker' 			=> new SaboresyColores_Walker_Nav_Primary()
+		) );
+	?>
+	</div>
+	<?php dynamic_sidebar( 'saboresycolores-sidebar' ); ?>
+</aside><!-- .sidebar .widget-area -->

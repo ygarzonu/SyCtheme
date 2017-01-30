@@ -1,0 +1,30 @@
+li.saboresycolores-address, 
+li.saboresycolores-phone,
+li.saboresycolores-celphone,
+li.saboresycolores-city { 
+	font-weight: 400;
+	color: #fff; 
+}
+
+h2.saboresycolores-footer{
+	font-weight: 500; 
+	font-size: 13px;
+	color: #f09600;
+}
+
+.saboresycolores-footer-widget{
+	.saboresycolores-footer ul li {
+	    width: 160px;
+	    float: left;
+	    border-left-style: solid;
+    	border-left-width: 1px;
+    	border-left:#fff;
+    	padding-right: 5px;
+	}
+}
+
+section .saboresycolores-widget .saboresycolores-footer-widget,
+section .saboresycolores-widget .widget_nav_menu{
+	    width: 320px;
+	    float: left;
+	}

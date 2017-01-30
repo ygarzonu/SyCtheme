@@ -4,7 +4,7 @@ jQuery(document).ready(function($){
 		$("#saboresycolores_css").val( editor.getSession().getValue() );
 	}
 
-	$("saboresycolores_sanitize_custom_css").submit( updateCSS );
+	$("#save-custom-css-form").submit( updateCSS );
 
 });
 

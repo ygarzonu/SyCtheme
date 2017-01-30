@@ -1,9 +1,9 @@
 <?php
-/*
-
-	@package saboresycolores_theme
-	--Single Product Categories Post Format
-
+/**
+*
+*	@package saboresycolores_theme
+*	--Single Product Categories Post Format
+*
 */
 
 ?>
@@ -14,23 +14,12 @@
  	?>		 
  	<header class="entry-header text-center background-image" style="background-image: url(<?php echo $featured_image; ?>);">
  	<?php endif; ?>	
- 		<h1><?php the_title( ); ?></h1>
- 		<div class="stripe"></div>
+ 		<h1><?php the_title( ); ?></h1> 		
   	</header><!-- .entry-header -->
-	
+	<div class="stripe"></div>
 	<div class="entry-content">		
-		<div class="grid">
-		
-		<?php the_content( '<div class="column one-third">', '</div>' ); ?>	
-		
-		</div>
-		
-		
-		</div>		
-	</div><!-- .entry-content -->
-	
-	<footer class="entry-footer">
-		<?php echo saboresycolores_posted_footer(); ?>
-	</footer>
-	
+		<div class="grid">		
+			<?php the_content(); ?>			
+		</div>			
+	</div><!-- .entry-content -->	
 </article>

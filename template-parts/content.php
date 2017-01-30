@@ -28,7 +28,7 @@
 		</div>
 		
 		<div class="button-container text-center">
-			<a href="<?php the_permalink(); ?>" class="btn"><?php _e( 'Leer más' ); ?></a>
+			<a href="<?php the_permalink(); ?>" class="btn btn-saboresycolores"><?php _e( 'Leer más' ); ?></a>
 		</div>		
 	</div><!-- .entry-content -->
 	

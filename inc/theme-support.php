@@ -1,11 +1,11 @@
 <?php 
 
-/*
-@package saboresycolores theme
-
-	======================
-	THEME SUPPORT OPTIONS
-	======================
+/**
+* @package saboresycolores_theme
+*
+*	======================
+*	THEME SUPPORT OPTIONS
+*	======================
 */
 
 	$options = get_option( 'post_formats' );
@@ -38,140 +38,54 @@
 	
 	add_theme_support( 'post-thumbnails' );
 
-	/* Activate Nav Menu Option */
+/**
+ * Add Product Name to media uploader
+ *
+ * @param $form_fields array, fields to include in attachment form
+ * @param $post object, attachment record in database
+ * @return $form_fields, modified form fields
+ */
+	function product_attachment_field( $form_fields, $post ) {
+    $form_fields['product-name'] = array(
+        'label' => 'Nombre del producto',
+        'input' => 'text',
+        'value' => get_post_meta( $post->ID, 'product_name', true ),
+        'helps' => 'Si se proporciona, el nombre del producto será mostrado',
+    );
+
+	return $form_fields;
+	}
+
+	add_filter( 'attachment_fields_to_edit', 'product_attachment_field', 10, 2 );
+
+/**
+* Save values of Product Name in media uploader
+*
+* @param $post array, the post data for database
+* @param $attachment array, attachment fields from $_POST form
+* @return $post array, modified post data
+*/
+
+	function product_attachment_field_save( $post, $attachment ) {
+	    if( isset( $attachment['product-name'] ) )
+	        update_post_meta( $post['ID'], 'product_name', $attachment['product-name'] );
+	   
+	    return $post;
+	}
+
+	add_filter( 'attachment_fields_to_save', 'product_attachment_field_save', 10, 2 );
+
+
+/** Activate Nav Menu Option */
 	function saboresycolores_register_nav_menu(){
+	
 		register_nav_menu( 'primary', 'Header Navigation Menu' );
+		register_nav_menu( 'secondary', 'Footer Navigation Menu' );
 	}
 	add_action( 'after_setup_theme', 'saboresycolores_register_nav_menu' );
 
 	/* Activate HTML5 features */
 	add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
-
-	
-	/*
-		============================
-		LOGO FUNCTION
-		============================
-	*/
-	function saboresycolores_logo($maxwidth = 200){
-	$logo = '';
-	$img_id = trim(saboresycolores_get_option('logo_img_id'));
-	
-	if(!empty($img_id)){
-		$logo_img = wp_get_attachment_image_src($img_id, 'full');
-		$w = $logo_img[1];
-		$h = $logo_img[2];
-		
-		// need to check these because of jetpack plugin
-		if(!empty($w) && !empty($h)){
-			$k = $w / $h; //aspect ratio
-
-			//check if width or height is outside of predefined max width and height
-			if($w > $maxwidth){
-				$w = $maxwidth;
-				$h = round($w / $k);
-			}
-		}else{
-			$w = $maxwidth;
-			$h = '';
-		}
-		$logo = '<img src="'. $logo_img[0] .'" alt="'. get_bloginfo('name') .'" ';
-		
-		if( !empty($w) && !empty($h) ){
-			$logo .= 'width="'. $w .'" height="'. $h .'" ';
-		}
-		
-		$logo .= '" />';		
-	}
-	elseif( '' != trim(saboresycolores_get_option('text_logo')) ){
-		$logo = '<span id="logo-text">' . esc_html(stripslashes(saboresycolores_get_option('text_logo'))) . '</span>';
-	}//if all else fails, return set blog name as logo
-	else{
-		$logo = '<span id="logo-text">' . get_bloginfo('name') . '</span>';
-	}
-
-	echo $logo;
-}
-
-
-function saboresycolores_get_options_name(){
-		$opt_sufix = '';
-
-		// set options name suffix if WPML is activated
-		if(defined('ICL_LANGUAGE_CODE')){
-			global $sitepress;
-			$default_lng = $sitepress->get_default_language();
-			if($default_lng != ICL_LANGUAGE_CODE){
-				$opt_sufix .= '_' . ICL_LANGUAGE_CODE;
-			}
-		}
-		return saboresycolores_OPTIONS_NAME . $opt_sufix;
-	}
-
-
-	/**
-	 * Returns theme option by option name.
-	 *
-	 * @since saboresycolores 1.0
-	 *
-	 * @param string $key Option name
-	 * @return mixed
-	 */
-	function saboresycolores_get_option($key){
-		$options_name = saboresycolores_get_options_name();
-		$values = get_option($options_name);
-		
-		return (!empty($values[$key])) ? $values[$key] : saboresycolores_get_option_default($key);
-	}
-	
-	/**
-	 * Returns theme option by option name.
-	 *
-	 * @since saboresycolores 1.0.7
-	 *
-	 * @param string $key Option name
-	 * @return mixed
-	 */
-	function saboresycolores_get_option_default($key){
-		global $saboresycolores_theme_option_pages;
-		global $saboresycolores_options_list;
-		
-		if(empty($saboresycolores_options_list)){
-			foreach($saboresycolores_theme_option_pages['saboresycolores_theme_settings_page']['tabs'] as $tab){
-				foreach($tab['fields'] as $field){
-					if(!empty($field['default']) && !empty($field['id'])){
-						$saboresycolores_options_list[$field['id']] = $field['default'];
-					}
-				}
-			}
-		}
-		
-		if(!empty($saboresycolores_options_list[$key])){
-			return $saboresycolores_options_list[$key];
-		}
-		
-		return '';
-	}
-
-	/**
-	 * Set single option in theme settings
-	 *
-	 * @since saboresycolores 1.0
-	 *
-	 * @param string $key Option name
-	 * @param mixed $value Option value
-	 */
-	function saboresycolores_set_option($key, $value){
-
-		if (trim($key) == '')
-				return;
-
-		$options_name = saboresycolores_get_options_name();
-		$saboresycolores_values = get_option($options_name);
-		$saboresycolores_values[$key] = $value;
-
-		update_option($options_name, $saboresycolores_values);
-	}
 
 
 	/*
@@ -186,6 +100,18 @@ function saboresycolores_get_options_name(){
 					'name'				=>	esc_html__( 'Barra lateral Sabores y Colores', 'saboresycolorestheme' ),
 					'id'				=>	'saboresycolores-sidebar',
 					'description'		=>	'Barra Derecha Lateral Dinámica',
+					'before_widget'		=>	'<section id="%1$s" class="saboresycolores-widget %2$s">',
+					'after-widget'		=>	'</section>',
+					'before_title'		=>	'<h2 class="saboresycolores-widget-title">',
+					'after-title'		=>	'</h2>'	
+					)
+				);
+
+			register_sidebar(
+				array(
+					'name'				=>	esc_html__( 'Footer Sabores y Colores', 'saboresycolorestheme' ),
+					'id'				=>	'saboresycolores-footer',
+					'description'		=>	'Barra inferior Dinámica',
 					'before_widget'		=>	'<section id="%1$s" class="saboresycolores-widget %2$s">',
 					'after-widget'		=>	'</section>',
 					'before_title'		=>	'<h2 class="saboresycolores-widget-title">',
@@ -222,7 +148,6 @@ function saboresycolores_get_options_name(){
 	}
 
 	function saboresycolores_posted_footer(){
-
 		$comments_num = get_comments_number();
 		if ( comments_open() ) {
 			//get comments link
@@ -233,11 +158,11 @@ function saboresycolores_get_options_name(){
 			}else{
 				$comments = __( '1 Comentario' );
 			}
-			$comments = '<a href="' . get_comments_link() . '">' . $comments . '<span class="saboresycolores-icon saboresycolores-comment"></span></a>';
+			$comments = '<div class="comments-link"><a href="' . get_comments_link() . '">' . $comments . '<span class="glyphicon glyphicon-comment"></span></a></div>';
 		} else {
 			$comments = __( 'Los comentarios están desabilitados' );
 		}
-		return '<div clas="post-footer-container"><div class="row"><div class="col-xs-12 col-sm-6">' . get_the_tag_list('<div class="tags-list"><span class="saboresycolores-icon saboresycolores-tag"></span>', ' ', '</div>') . '</div><div class="col-xs-12 col-sm-6">' . $comments . '</div>';
+		return '<div class="post-footer-container"><div class="row"><div class="col-xs-12 col-sm-6">' . get_the_tag_list('<div class="tags-list"><span class="glyphicon glyphicon-tag"></span>', ' ', '</div>') . '</div><div class="col-xs-12 col-sm-6">' . $comments . '</div>';
 	}
 
 	function saboresycolores_get_attachment( $num = 1 ){	
@@ -281,10 +206,10 @@ function saboresycolores_post_navigation(){
 	
 	$nav = '<div class="row">';
 	
-	$prev = get_previous_post_link( '<div class="post-link-nav"><span class="saboresycolores-icon saboresycolores-chevron-left" aria-hidden="true"></span> %link</div>', '%title' );
+	$prev = get_previous_post_link( '<div class="post-link-nav"><span class="saboresycolores icon-left" aria-hidden="true"></span> %link</div>', '%title' );
 	$nav .= '<div class="col-xs-12 col-sm-6">' . $prev . '</div>';
 	
-	$next = get_next_post_link( '<div class="post-link-nav">%link <span class="saboresycolores-icon saboresycolores-chevron-right" aria-hidden="true"></span></div>', '%title' );
+	$next = get_next_post_link( '<div class="post-link-nav">%link <span class="saboresycolores icon-right" aria-hidden="true"></span></div>', '%title' );
 	$nav .= '<div class="col-xs-12 col-sm-6 text-right">' . $next . '</div>';
 	
 	$nav .= '</div>';

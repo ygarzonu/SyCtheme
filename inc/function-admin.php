@@ -16,6 +16,8 @@ function saboresycolores_add_admin_page(){
 	//Generate Sabores&Colores Admin Subpages
 	add_submenu_page('ejc_saboresycolores','SaboresyColores Sidebar Options', 'Barra lateral', 'manage_options', 'ejc_saboresycolores', 'saboresycolores_theme_create_page');
 
+	add_submenu_page('ejc_saboresycolores','SaboresyColores Footer Options', 'Pie de página', 'manage_options', 'ejc_saboresycolores_footer', 'saboresycolores_theme_footer_page');
+
 	add_submenu_page('ejc_saboresycolores','SaboresyColores Theme Options', 'Opciones de tema', 'manage_options', 'ejc_saboresycolores_theme', 'saboresycolores_theme_support_page');
 
 	add_submenu_page('ejc_saboresycolores','SaboresyColores Contact Form', 'Formulario de contacto', 'manage_options', 'ejc_saboresycolores_theme_contact', 'saboresycolores_contact_form_page');
@@ -34,9 +36,9 @@ function saboresycolores_custom_settings(){
 	//Sidebar options
 	register_setting('saboresycolores-settings-group', 'profile_picture');
 	register_setting('saboresycolores-settings-group', 'company_name');
-	register_setting('saboresycolores-settings-group', 'company_description');
 	register_setting('saboresycolores-settings-group', 'twitter_handler', 'saboresycolores_sanitize_twitter_handler');
 	register_setting('saboresycolores-settings-group', 'facebook_handler');
+	register_setting('saboresycolores-settings-group', 'instagram_handler');
 
 	add_settings_section('saboresycolores-sidebar-options', 'Opciones de la barra lateral', 'saboresycolores_sidebar_options', 'ejc_saboresycolores');
 
@@ -45,6 +47,21 @@ function saboresycolores_custom_settings(){
 	add_settings_field('sidebar-description', 'Descripción',  'saboresycolores_sidebar_description', 'ejc_saboresycolores', 'saboresycolores-sidebar-options');
 	add_settings_field('sidebar-twitter', 'Cuenta de Twitter',  'saboresycolores_sidebar_twitter', 'ejc_saboresycolores', 'saboresycolores-sidebar-options');
 	add_settings_field('sidebar-facebook', 'Cuenta de Facebook',  'saboresycolores_sidebar_facebook', 'ejc_saboresycolores', 'saboresycolores-sidebar-options');
+	add_settings_field('sidebar-instagram', 'Cuenta de Instagram',  'saboresycolores_sidebar_instagram', 'ejc_saboresycolores', 'saboresycolores-sidebar-options');
+
+	//Theme Footer Options
+	register_setting('saboresycolores-footer-group', 'company_description');
+	register_setting('saboresycolores-footer-group', 'company_address');
+	register_setting('saboresycolores-footer-group', 'company_phonenumber');
+	register_setting('saboresycolores-footer-group', 'company_celphone');
+	register_setting('saboresycolores-footer-group', 'company_city');
+
+	add_settings_section('saboresycolores-footer-options', 'Opciones del pie de página del sitio', 'saboresycolores_footer_options', 'ejc_saboresycolores_footer');
+
+	add_settings_field('footer-address', 'Dirección',  'saboresycolores_footer_address', 'ejc_saboresycolores_footer', 'saboresycolores-footer-options');
+	add_settings_field('footer-phone', 'Teléfono',  'saboresycolores_footer_phonenumber', 'ejc_saboresycolores_footer', 'saboresycolores-footer-options');
+	add_settings_field('footer-celphone', 'Celular',  'saboresycolores_footer_celphonenumber', 'ejc_saboresycolores_footer', 'saboresycolores-footer-options');
+	add_settings_field('footer-city', 'Ciudad y Pais',  'saboresycolores_footer_city', 'ejc_saboresycolores_footer', 'saboresycolores-footer-options');
 
 	//Theme Support Options
 	//register_setting(optionGroup, option, callback function)
@@ -111,7 +128,16 @@ function saboresycolores_custom_header(){
 	$options = get_option( 'custom_header' );
 	$checked = ($options == 1 ? 'checked' : '' );
 	echo '<label><input type="checkbox" id="custom_header" name="custom_header" value="1" '.$checked.' /> Activar el encabezado personalizado </label>';
+
+	$args = array(
+		'width'                  => 1200,
+		'height'                 => 380,
+		'flex-height'            => false,
+		'wp-head-callback'       => 'saboresycolores_header_style',
+	); 
+	add_theme_support( 'custom-header', $args );
 }
+
 
 function saboresycolores_activate_contact(){
 	$options = get_option( 'activate_contact' );
@@ -162,6 +188,37 @@ function saboresycolores_sidebar_facebook(){
 	echo '<input type="text" name="facebook_handler" value="'.$facebook.'" placeholder="cuenta de facebook" />';
 }
 
+function saboresycolores_sidebar_instagram(){
+	$instagram = esc_attr(get_option('instagram_handler'));
+
+	echo '<input type="text" name="instagram_handler" value="'.$instagram.'" placeholder="cuenta de instagram" />';
+}
+
+
+function saboresycolores_footer_options(){
+	echo 'Personaliza tu información del pie de página del sitio';
+}
+
+function saboresycolores_footer_address(){
+	$address = esc_attr(get_option('company_address'));
+	echo '<input type="text" name="company_address" value="'.$address.'" placeholder="Dirección de la empresa" />';
+}
+
+function saboresycolores_footer_phonenumber(){
+	$phone = esc_attr(get_option('company_phonenumber'));
+	echo '<input type="text" name="company_phonenumber" value="'.$phone.'" placeholder="Número de teléfono de la empresa" />';
+}
+
+function saboresycolores_footer_celphonenumber(){
+	$celphone = esc_attr(get_option('company_celphone'));
+	echo '<input type="text" name="company_celphone" value="'.$celphone.'" placeholder="Número de celular de la empresa" />';
+}
+
+function saboresycolores_footer_city(){
+	$city = esc_attr(get_option('company_city'));
+	echo '<input type="text" name="company_city" value="'.$city.'" placeholder="Ciudad y País donde se encuentra la empresa" />';
+}
+
 //Sanitization settings
 function saboresycolores_sanitize_twitter_handler( $input ){
 	$output = sanitize_text_field( $input );
@@ -177,6 +234,10 @@ function saboresycolores_sanitize_custom_css( $input ){
 //Template submenu functions
 function saboresycolores_theme_create_page() {
 	require_once( get_template_directory() . '/inc/templates/saboresycolores-admin.php');
+}
+
+function saboresycolores_theme_footer_page() {
+	require_once( get_template_directory() . '/inc/templates/saboresycolores-footer.php');
 }
 
 function saboresycolores_theme_support_page(){

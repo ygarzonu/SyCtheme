@@ -21,7 +21,17 @@
 		<h2 class="saboresycolores-description">
 			<?php print $description; ?>
 		</h2>
-		<div class="icons-wrapper"></div>
+		<div class="icons-wrapper">
+			<?php if( !empty( $twitter_icon ) ): ?>
+				<span class="saboresycolores-icon-sidebar dashicons dashicons-twitter"></span>
+			<?php endif; 
+			if( !empty( $instagram_icon ) ): ?>
+				<span class="saboresycolores-icon-sidebar saboresycolores-before icon-instagram"></span>
+			<?php endif; 
+			if( !empty( $facebook_icon ) ): ?>
+				<span class="saboresycolores-icon-sidebar saboresycolores-before icon-facebook"></span>
+			<?php endif; ?>
+		</div>
 	</div>
 </div>
 

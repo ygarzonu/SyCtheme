@@ -13,7 +13,8 @@
 	function saboresycolores_product_custom_post_type(){
 		$labels = array(
 			'name'			=> 	__( 'Categoria Productos' ),
-			'singular_name'	=>	__( 'Categoria Producto' )
+			'singular_name'	=>	__( 'Categoria Producto' ),
+			'add_new_item'  =>  __( 'Agregar nueva Categoría de Productos')
 			);
 
 		$args = array(
@@ -57,7 +58,8 @@
 			'name' 				=> 'Mensajes',
 			'singular_name' 	=> 'Mensaje',
 			'menu_name'			=> 'Mensajes',
-			'name_admin_bar'	=> 'Mensaje'
+			'name_admin_bar'	=> 'Mensaje',
+			'add_new_item'  	=> 'Agregar nuevo Mensaje'
 		);
 
 		$args = array(
